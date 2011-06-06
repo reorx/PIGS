@@ -22,18 +22,13 @@ DATABASES = {
     }
 }
 
-# Local time zone for this installation. Choices can be found here:
-# http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
-# although not all choices may be available on all operating systems.
-# On Unix systems, a value of None will cause Django to use the same
-# timezone as the operating system.
-# If running in a Windows environment this must be set to the same as your
-# system time zone.
 TIME_ZONE = 'Asia/Shanghai'
 
-# Language code for this installation. All choices can be found here:
-# http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
+LANGUAGES = (
+    ('zh', 'Chinese'),
+    ('zh-cn', 'Chinese'),
+)
 
 SITE_ID = 1
 
@@ -47,17 +42,11 @@ USE_L10N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = os.path.join(ROOT_PATH, '../static/media')
 
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash if there is a path component (optional in other cases).
-# Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
-# URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
-# trailing slash.
-# Examples: "http://foo.com/media/", "/media/".
-# ADMIN_MEDIA_PREFIX = 'http://localhost/django_admin_media/'
+ADMIN_MEDIA_PREFIX = '/admin-media/'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '4x+lg84h@$w^d+e$w197!!vy9w!a(oe2ae!xe+5m$n8*+cwuef'
@@ -77,13 +66,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'my_PIGS.urls'
+ROOT_URLCONF = 'pigs.urls'
 
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    os.path.join(ROOT_PATH, 'templates/').replace('\\','/')
+    os.path.join(ROOT_PATH, '../templates')
 )
 
 INSTALLED_APPS = (
@@ -91,19 +77,18 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    #  #
     'django.contrib.sites',
     'django.contrib.messages',
     # admin #
     'django.contrib.admin',
     # filters #
     'django.contrib.markup',
-    'my_filters',
-    # project apps #
-    'default',
-    'custom',
-    'blog',
+    # utils #
+    'utils',
+    # modules #
+    'knowledge',
+    'tag',
+    'note',
+    # apps #
+    #'apps',
 )
-
-STATIC_ROOT = os.path.join(ROOT_PATH, 'static/').replace('\\','/')
-STATIC_URL = '/static/'

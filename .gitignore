@@ -1,3 +1,5 @@
 *.py[co]
 *.swp
 *.sqlite
+/test
+test
