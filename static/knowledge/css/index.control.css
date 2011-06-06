@@ -1,0 +1,100 @@
+/* #control */
+#Control {
+    position: absolute;
+    left: 50px;top: 51px;bottom: 0px;
+    width: 250px;
+    border-right: 1px solid #000;
+}
+#operateInList {
+    position: absolute;
+    left: 0px;right: 0px;top: 0px;
+    height: 30px;
+    overflow: hidden;
+    background: #fff;
+    border-bottom: 1px solid #000;
+}
+.operateInList {
+    position: absolute;
+    left: 0px;right: 0px;top: 0px;bottom: 0px;
+}
+#View_area {
+    position: absolute;
+    left: 0px;right: 0px; top: 31px /*#OperateArea->height*/; bottom: 0px;
+}
+#View {
+    position: absolute;
+    left: 0px;right: 0px;top: 5px;bottom: 10px;
+    background: #fff;
+    overflow-y: hidden;
+}
+/* #Control//#List */
+.knowledge_wrap {
+    position: relative;
+    float: right;
+    /*width: 234px;
+    padding: 5px 0px 0px 10px;*/
+    width: 100%;
+    padding: 5px 0px 0px 0px;
+    height: 23px;
+    border-bottom: 1px solid #aaa;
+}
+.knowledge_wrap:hover {
+    background: #fafafa;
+}
+.knowledge {
+    width: 238px;
+    float: right;
+    display: block;
+}
+.knowledge, .knowledge:hover { color: #666; }
+.k_ToggleButton, .k_MenuButton { display: none; }
+.k_ToggleButton {
+    width: 15px;height: 15px;
+    line-height: 15px;
+    position: absolute;
+    right: 35px;
+    background: #aaa;
+    text-align: center;
+    opacity: 0.6;
+}
+.k_MenuButton {
+    /*display: block;*/
+    position: absolute;
+    right: 5px;
+    width: 20px;height: 20px;
+    opacity: 0.6;
+}
+.k_MenuButton:hover {
+    opacity: 1;
+}
+.k_MenuButton img {
+    width: 20px;height: 20px;
+}
+/* #Control//#Category */
+.info_title, .info_content { float:left; }
+.info_title {
+    width: 220px;height:30px;
+    margin: 10px 0 0 10px;
+    border-bottom: 3px solid #555;
+    color: #3a3a3a;
+    font-size: 25px;
+}
+.info_content {
+    width: 190px;
+    background: #fafafa;
+    margin: 0 0 0 10px;
+    padding: 5px 5px 5px 5px;
+}
+.info_content, .info_content a, .info_content a:visited {
+    color: #5a5a5a;
+    font-size: 8px;
+    font-style: italic;
+}
+.info_content a {
+    display: block;
+    height: 15px;
+    margin-left: 8px;
+    float: right;
+    font-style: italic;
+    text-decoration: underline;
+}

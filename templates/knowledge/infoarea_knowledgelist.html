@@ -1,0 +1,86 @@
+{{ html|safe }}
+<script type="text/javascript">
+    $('#View')
+        .find('.knowledge')
+            .each(function(){
+                var l = Number($(this).attr('level'));
+                $(this).width($(this).width()-l*10);
+                ////
+                $(this).parent().bind({
+                    mouseover: function(){
+                    $(this).find('.k_MenuButton').css({display:'block'});
+                    ////
+                    if (Number($(this).attr('level'))<Number($(this).next().attr('level'))) {
+                        $(this).find('.k_ToggleButton').css({display:'block'});
+                    }
+                    },
+                    mouseout: function(){
+                    $(this).find('.k_MenuButton').css({display:'none'});
+                    $(this).find('.k_ToggleButton').css({display:'none'});
+                    }
+                })
+            });
+
+    $('#View')
+        .find('.k_MenuButton')
+            .each(function(){
+                $(this).bind({
+                    click: function(e){
+                        //
+                        KNOWLEDGE.id = $(this).attr('kID');
+                        AREA.item = $(this).parent();
+                        //
+                        var Xpx,Ypx;
+                        Xpx = (Number(e.pageX)+10)+'px';
+                        Ypx = e.pageY+'px';
+                        $('#knowledgeMenu')
+                            .css({ left: Xpx, top: Ypx, })
+                            .toggleClass('hidden');
+                        return false;
+                    }
+                });
+            });
+
+    $('#View')
+        .find('.k_ToggleButton')
+            .each(function(){
+                $(this).data('toggle','expand');
+                $(this).bind({
+                    click: function(){
+                        var K = $(this).parent();
+                        var Kl = K.attr('level');
+                        //var exp = '[level="'+K.attr('level')+'"]';
+                        //var Cs = K.nextUntil(exp);
+                        var C_all = K.nextAll();
+                        ////
+                        if ($(this).data('toggle') == 'expand') {
+                            $(this).data('toggle','shrink');
+                            $(this).html('-');
+                            C_all.each(function(){
+                                if (Number($(this).attr('level'))>Kl) {
+                                    $(this).hide();
+                                } else {
+                                    return false;
+                                }
+                            });
+                        } else {
+                            $(this).data('toggle','expand');
+                            $(this).html('+');
+                            C_all.each(function(){
+                                if (Number($(this).attr('level'))>Kl) {
+                                    $(this).show();
+                                } else {
+                                    return false;
+                                }
+                            });
+                        }
+                    }
+                });
+            });
+    // body //
+    $('body').click(function(){
+        if (!$('#knowledgeMenu').is('.hidden')) {
+            $('#knowledgeMenu').addClass('hidden');
+        }
+    });
+</script>

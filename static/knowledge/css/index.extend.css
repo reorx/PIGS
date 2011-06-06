@@ -1,0 +1,35 @@
+
+#kInfo_wrap {
+}
+.kInfo {
+    overflow: hidden;
+}
+.kInfo_title, .kInfo_content {
+    float: left;
+}
+.kInfo_title {
+    width: 100%;height:30px;
+    margin: 10px 0 0 10px;
+    border-bottom: 3px solid #555;
+    color: #3a3a3a;
+    font-size: 25px;
+}
+.kInfo_content {
+    width: 70%;
+    background: #fafafa;
+    margin: 0 0 0 10px;
+    padding: 5px 5px 5px 5px;
+}
+.kInfo_content, .kInfo_content a, .kInfo_content a:visited {
+    color: #5a5a5a;
+    font-size: 8px;
+    font-style: italic;
+}
+.kInfo_content a {
+    display: block;
+    height: 15px;
+    margin-left: 8px;
+    float: right;
+    font-style: italic;
+    text-decoration: underline;
+}

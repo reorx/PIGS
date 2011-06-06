@@ -1,0 +1,54 @@
+#kContents_wrap {
+    margin: 10px;
+}
+/**/
+.kContents {
+    margin: 0px;
+    padding: 5px;
+    overflow: hidden;
+    position: relative;
+}
+.kContents:hover {
+    background: #fff596;
+}
+.kContents .title {
+    position: absolute;
+    right: 5px;top: 0px;
+    height: 20px;
+    color: #888;
+    background: #fafafa;
+    font-style: italic;
+    padding: 0 3px 0 12px;
+}
+.kContents .content {
+}
+.kContents .notes_wrap {
+    float:right;
+    height: 80px;
+    margin: 5px 10px 0px 0px;
+    padding: 5px;
+    background: #efffb0;
+    -webkit-box-shadow: 0px 0px 4px #aaa;
+    -webkit-border-radius: 5px;
+}
+
+.kContents_bottomline {
+    height: 5px;
+    border-bottom: 2px solid #aaa;
+    margin-bottom: 5px;
+}
+#kContents_wrap .add_button {
+    display: block;
+    float: right;
+    width: 100px;height: 25px;
+    padding: 0 5px 0 5px;
+    text-align: center;
+    border: 1px solid #888;
+    -webkit-border-radius: 6px;
+    line-height: 25px;
+    letter-spacing: 1px;
+}
+#kContents_wrap .add_button:visited {
+    font-size: 13px;
+    color: #555;
+}

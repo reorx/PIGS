@@ -1,0 +1,46 @@
+{% extends 'blog/base.html' %}
+
+{% load markup %}
+{% load my_filters %}
+
+{% block head_extra %}
+{% endblock %}
+
+{% block blog_list %}
+    {% for b in blogs %}
+    <div class="blog">
+        <div class="title">
+        {{ b.title }}
+        </div>
+        <div class="info">
+        {{ b.dtime }}
+        </div>
+        <div class="content">
+        {{ b.content|markdown }}
+        </div>
+    </div>
+    {% endfor %}
+    <div id="pageSplit">
+        <ul>
+            {% ifequal page.now '0' %}
+            {% else %}
+                <a href="/blog/{{ page.pre }}/"><li><</li></a>
+            {% endifequal %}
+            {% for p in page.list %}
+                {% ifequal p '...'  %}
+                <li>···</li>
+                {% else %}
+                    {% ifequal p page.now  %}
+                    <a href="/blog/{{ p }}/"><li class="in">{{ p }}</li></a>
+                    {% else %}
+                    <a href="/blog/{{ p }}/"><li>{{ p }}</li></a>
+                    {% endifequal %}
+                {% endifequal %}
+            {% endfor %}
+            {% ifequal page.now page.final %}
+            {% else %}
+                <a href="/blog/{{ page.next }}/"><li>></li></a>
+            {% endifequal %}
+        </ul>
+    </div>
+{% endblock %}

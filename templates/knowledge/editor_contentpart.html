@@ -1,0 +1,23 @@
+
+    <div id="InputContainer">
+        <div id="InputContent_wrap">
+            {% if k %}
+            <textarea id="InputContent" class="input_basic" name="" rows="10" cols="50" placeholder="Content">{{ k.content }}</textarea>
+            {% else %}
+            <textarea id="InputContent" class="input_basic" name="" rows="10" cols="50" placeholder="Content"></textarea>
+            {% endif %}
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+
+    <!--*****************-->
+
+
+<!--*****************-->
+<script src="/static/js_lib/mark-it-up.js" type="text/javascript"></script>
+<script src="/static/js_lib/mark-it-up.settings.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $('#InputContent').markItUp(markitupSettings);
+</script>
+

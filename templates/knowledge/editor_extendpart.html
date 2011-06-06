@@ -1,0 +1,67 @@
+<div id="InputTitle_wrap">
+    <input id="InputTitle" class="input_basic" type="text" placeholder="Title" value="{{ k.title }}" />
+</div>
+
+<div id="InputBrief_wrap" class="briefLite">
+    <!--<input id="InputBrief" class="input_basic" type="text" placeholder="Brief" />-->
+    <textarea id="InputBrief" class="input_basic" placeholder="Brief" /></textarea>
+</div>
+
+<div id="InputParent_wrap" class="parentLite">
+    <input id="InputParent" class="input_ajax" type="text" placeholder="Parent" value="{{ k.parent_reset.title }}" />
+    <div id="InputParent_ajax" style="display: none;"></div>
+</div>
+
+<div id="InputRefer_wrap" class="referLite">
+</div>
+
+<div id="Tips_wrap" style="display: none;">
+    <div class="Tips_name">Tips</div>
+    <a id="TipsAddButton" class="ButtonAddTips" href="#" >+</a>
+    <div id="TipsContainer">
+        {% for tip in k.tips_reset %}
+        <div class="tip">
+            <textarea tID="{{ tip.id }}" class="InputTip">{{ tip.content }}</textarea>
+        </div>
+        {% endfor %}
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<div id="Submit_wrap">
+    <a id="Submit" href="#submit" class="ButtonSubmit"></a>
+</div>
+
+<div id="tip_model" class="tip" style="display: none;">
+    <textarea class="InputTip"></textarea>
+</div>
+
+<script src="/static/knowledge/js/pigs.editor.js" type="text/javascript"></script>
+<script type="text/javascript">
+/***multiple-add.init.js***/
+// init //
+{% ifequal mode 'add' %}
+$('#Submit').html('Create').css({'text-decoration':'line-through'});
+{% endifequal %}
+
+{% ifequal mode 'edit' %}
+$('#Submit').html('Save').css({'text-decoration':'line-through'});
+KNOWLEDGE.ifcreated = 'true';
+$('#InputBrief').val('{{ k.brief }}');
+    // init Tip Data //
+$('.InputTip').each(function(){
+    $(this).data('id',$(this).attr('tid'));
+});
+{% endifequal %}
+
+$('.input_basic').bind({
+    'keyup change': function(){
+        certify_onkeyup();
+    },
+});
+$('.input_ajax').bind({
+    'change': function() {
+        certify_onkeyup();
+    },
+});
+</script>

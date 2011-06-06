@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Blog #of PIGS</title>
+    <!-- css fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Cantarell' rel='stylesheet' type='text/css'>
+    <!-- endcss -->
+    <link media="all" rel="stylesheet" href="/static/blog/css/style.css" type="text/css" />
+    <!-- script greader_embed -->
+    <!-- endscript -->
+    <!-- css greader_embed -->
+    <style type="text/css">
+        #readerpublishermodule0 {
+            position: fixed;
+            top: 200px;left:0px;
+            width: 180px;
+        }
+    </style>
+    <!-- endcss -->
+    {% block head_extra %}
+    {% endblock %}
+</head>
+<body>
+    <div id="body_wrap">
+        <div id="Header">
+            <div class="title">Blog #of PIGS</div>
+            <div class="subtitle">import this</div>
+        </div>
+        <div id="Main">
+            <div class="container">
+            {% block blog_list %}
+            {% endblock %}
+            </div>
+        </div>
+        <div id="Footer">
+            <div class="upPart">
+                <span class="normal_grey">copyright.</span>
+                <span class="bold_green">Reorx</span>
+            </div>
+            <div class="downPart">
+                <span class="normal_grey">powered by</span>
+                <span class="bold_red">Django</span>
+                <span class="normal_grey">&</span>
+                <span class="bold_red">Nginx</span>
+                <span class="normal_grey">&</span>
+                <span class="bold_red">PIGS</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

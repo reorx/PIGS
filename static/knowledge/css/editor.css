@@ -1,0 +1,126 @@
+textarea {
+    outline: none;
+    border: none;
+}
+#contentExtend input {
+    outline: none;
+    border: none;
+    width: 170px;height: 25px;
+    margin: 4px 10px 4px 10px;
+    font-size: 20px;font-weight: bold;
+}
+input:focus {
+}
+/* layout */
+#InputContainer {
+    position: absolute;
+    left: 0px;right: 0px;top: 0px;bottom: 10px;
+    border-bottom: 1px solid #000;
+}
+#InputContent_wrap {
+}
+#InputContent {
+    position: absolute;
+    left: 0px;right: 0px;top: 30px;bottom: 0px;
+}
+/* Wrap */
+#InputTitle_wrap, #InputBrief_wrap, #InputParent_wrap, #InputRefer_wrap
+{
+    width: 199px;float:left;
+    border-bottom: 1px solid #000;
+    position: relative;
+}
+#InputTitle_wrap
+{
+    height: 40px
+}
+#Tips_wrap {
+    float: left;
+    position: relative;
+    width: 199px;
+}
+#Submit_wrap{
+    position: absolute;
+    left: 0px;right: 0px;bottom: 0px;
+    height: 49px;
+    border-top: 1px solid #000;
+}
+/**/
+.briefLite { height: 40px; }
+.briefStandout{ height: 100px; }
+.parentLite { height: 40px; }
+.parentStandout { height: 200px; }
+.referLite { height: 40px; }
+/**/
+#InputContent {
+    font-size: 13px; color: #a83;
+    padding: 5px;
+}
+#InputBrief {
+    position: absolute;
+    left: 10px;right: 5px;top: 3px;bottom: 3px;
+    font-size: 8px;color: #444;
+}
+#InputParent {
+}
+#InputParent_ajax {
+    position: absolute;
+    left:10px;top: 30px;
+    width: 120px;
+    z-index: 9999;
+}
+.search_result {
+    margin-left: 5px;
+    font-size: 8px;
+    background: #fff;
+    border-bottom: 1px solid #000;
+}
+.search_result:hover {
+    background: #eee;
+}
+
+/* submit */
+#Submit {
+    display: block;
+    position: absolute;
+    left: 0px;right: 0px;top: 0px;bottom: 0px;
+    line-height: 50px;
+}
+#Submit_content {
+    display: none;
+    position: absolute;
+    right: 0px;top:0px;bottom: 0px;
+    width: 80px;
+    font-size: 14px;
+    line-height: 31px;
+    border-left: 1px solid #000;
+    text-decoration: none;
+}
+/* Tips */
+#TipsContainer {
+    position: absolute;
+    left: 10px;right: 10px;top: 30px;bottom: 0px;
+}
+.Tips_name {
+    position: absolute;
+    left: 10px;top: 0px;
+    width: 100px;height: 20px;
+    font-size: 20px;font-weight: bold;
+    color: #a9a9a9;
+    letter-spacing: 1px;
+}
+#TipsAddButton {
+    position: absolute;
+    right: 0px;top: 0px;
+    width: 20px;height: 20px;
+}
+.tip {
+    width: 180px;height: 30px;
+    float: left;
+    background: #efefef;
+    position: relative;
+}
+.InputTip {
+    position: absolute;
+    left: 2px;right: 2px;top: 2px;bottom: 2px;
+}

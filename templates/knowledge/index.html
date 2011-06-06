@@ -1,0 +1,15 @@
+{% extends 'knowledge/base.html' %}
+
+{% block title %}
+{% endblock %}
+
+{% block head_extra %}
+    <link media="all" rel="stylesheet" href="" type="text/css" />
+    <script src="" type="text/javascript"></script>
+{% endblock %}
+
+{% block navigation %}
+        {% for category in category_list %}
+        <a href="#{{ category.name }}" id="" class="NavButton Button_RB" onclick="InfoArea_Category({{ category.id }})">{{ category.name }}</a>
+        {% endfor %}
+{% endblock %}

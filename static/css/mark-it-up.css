@@ -1,0 +1,33 @@
+.markItUpHeader {
+    position: absolute;
+    top: 0px;left: 0px;right: 0px;
+    height: 30px;
+    border-bottom: 1px solid #000;
+}
+.markItUpHeader ul, .markItUpHeader li {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+.markItUpHeader li {
+    float: left;
+    width: 30px;height: 30px;
+    border-right: 1px solid #000;
+    /* border-left: 1px dashed #f7c100;
+    border-right: 1px dashed #f7c100;
+    border-top: 1px dashed #f7c100;*/
+}
+.markItUpHeader li a {
+    display: block;
+    width: 25px;height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 10px;
+    color: #666;
+    font-weight: bold;
+    text-shadow: 3px 3px 2px #fff;
+    margin: 2px;
+}
+.markItUpHeader li a:hover {
+    color: #222;
+}

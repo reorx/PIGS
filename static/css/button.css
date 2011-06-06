@@ -1,0 +1,124 @@
+/* shadow */
+.shadow_0 {
+    -moz-box-shadow: 2px 2px 5px #888;
+    -webkit-box-shadow: 2px 2px 5px #888;
+}
+
+/* z-index */
+#Header, #AppsArea, #ListArea, #Content {
+    z-index: 0;
+}
+#KnowledgeButton {
+    background: #fff;
+    z-index: 5;
+}
+#Home {
+    background: #fff;
+    z-index: 10;
+}
+/* Button */
+.button_root {
+    display: block;
+    float: left;
+    width: 50px;height: 40px;
+    font-size: 30px;line-height: 50px;text-align: center;
+    border: none;
+}
+/*.button_root:hover {
+    width: 48px;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+}*/
+.Button_RB {
+    /* size */
+    float: left;
+    width: 70px;height: 30px;
+    /* color */
+    background: #fff;
+    border-right: 1px solid #555;
+    /* radius 
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    border-radius: 25px;
+    */
+    /* text */
+    color: #444;
+    line-height: 30px; overflow: hidden;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 3px 3px 5px #fff;
+    z-index: 1;
+}
+.Button_RB:hover {
+    text-decoration: underline;
+}
+
+.Button_RS {
+    /* size */
+    float: left;
+    width: 40px;height: 30px;
+    /* color */
+    background: #fff;
+    border-right: 1px solid #000;
+    /* radius
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    */
+    /* text */
+    color: #000;
+    line-height: 30px; overflow: hidden;
+    font-size: 10px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+.Button_RS:hover {
+    /* shadow */
+    -moz-box-shadow: 0px 0px 5px #444;
+    -webkit-box-shadow: 0px 0px 5px #444;
+    text-shadow: 1px 1px 1px #555;
+}
+.Button_KM {
+    /* size */
+    float: left;
+    width: 25px;height: 20px;
+    /* color */
+    background: #fff;
+    border-bottom: 1px solid #000;
+    /* radius
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    */
+    /* text */
+    color: #000;
+    line-height: 20px; overflow: hidden;
+    font-size: 6px;
+    text-align: center;
+}
+.Button_KM:hover {
+    text-decoration: underline;
+}
+.ButtonSubmit {
+    letter-spacing: 3px;
+    text-align: center;
+    text-decoration: line-through;
+    color: #000;
+    font-size: 30px;
+    font-weight: bold;
+}
+.ButtonSubmit:hover {
+    background: #000;
+    color: #fafafa;
+    font-weight: bold;
+}
+
+.ButtonAddTips {
+    background: #fff;
+    border: 1px solid #000;
+    border-top: none;border-right: none;
+    color: #000;
+    font-size: 20px;font-weight: bold;
+    line-height: 20px;text-align: center;
+}

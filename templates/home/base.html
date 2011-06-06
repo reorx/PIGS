@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+
+    <title>
+    {% block title %}
+    {% endblock %}
+    </title>
+
+    <link media="all" rel="stylesheet" href="/static/.css" type="text/css" />
+    <script src="" type="text/javascript"></script>
+    {% block head_extra %}
+    {% endblock %}
+</head>
+<body>
+    its home base
+    {% block container %}
+    {% endblock %}
+</body>
+</html>

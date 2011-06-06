@@ -1,0 +1,35 @@
+<div id="kInfo_wrap">
+    <div id="x" class="kInfo">
+        <div class="kInfo_title">Title</div>
+        <div class="kInfo_content">{{ k.title }}</div>
+    </div>
+    <div id="x" class="kInfo">
+        <div class="kInfo_title">Brief</div>
+        <div class="kInfo_content">
+            <span class="kInfo_time">{{ k.dtime }}</span>
+            <p>{{ k.brief }}</p>
+        </div>
+    </div>
+    <div id="x" class="kInfo">
+        <div class="kInfo_title">Refer</div>
+        <div class="kInfo_content">
+            {% if k.refer %}
+                {{ k.refer }}
+            {% else %}
+                no reference
+            {% endif %}
+        </div>
+    </div>
+    <div id="x" class="kInfo">
+        <div class="kInfo_title">Content</div>
+        <div class="kInfo_content">
+            {% if k.contents_list %}
+                {% for c in k.contents_list %}
+                    {{ c }}
+                {% endfor %}
+            {% else %}
+                no contents
+            {% endif %}
+        </div>
+    </div>
+</div>

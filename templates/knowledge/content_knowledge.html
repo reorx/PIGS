@@ -1,0 +1,69 @@
+{% load markup %}
+
+<div id="kContents_wrap">
+    {% if k.contents_reset %}
+    <!-- -------- -->
+
+    {% for c in k.contents_reset %}
+
+    <div class="kContents">
+        <div class="title">#content {{ c.id }}</div>
+        <div class="content">
+            {{ c.content|markdown }}
+        </div>
+        <div class="clearfix"></div>
+
+        <!-- do it later -->
+        <div class="notes_wrap" style="display: none;">
+            <div class="title">Notes</div>
+        {% if c.notes_reset %}
+            <div class="note">
+            {% for n in c.notes_reset %}
+                {{ n.content }}
+            {% endfor %}
+            </div>
+        {% else %}
+            nothing add?
+        {% endif %}
+        </div>
+        <!-- up -->
+    </div>
+    <div class="kContents_bottomline"></div>
+
+    {% endfor %}
+
+    <div class="clearfix"></div>
+    <a href="#" class="add_button">add content</a>
+    <!-- -------- -->
+    {% else %}
+        nothing create?
+    {% endif %}
+    </div>
+
+</div>
+
+<!-- -->
+<script type="text/javascript">
+var page_c_k = function () {
+    var a = $('#kContents_wrap > .add_button');
+    a.click(function(){
+        Content_Add('content');
+    });
+}
+function add_content() {
+    var c = $('#InputContent').val();
+    $.ajax({
+        type: 'POST',
+        url: '/knowledge/add_content/',
+        data: 'k_id='+KNOWLEDGE.id
+              +'&a_content='+c,
+        success: function(){
+            Content_Knowledge();
+            loading_off();
+        }
+    });
+    loading_on();
+}
+
+page_c_k();
+</script>
