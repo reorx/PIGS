@@ -1,0 +1,41 @@
+{% extends 'me/base.html' %}
+
+{% block head_title %}
+Knowledge Main
+{% endblock %}
+
+{% block extra_head %}
+<script type="text/javascript">
+    $.getJSON('/know/category/', function (resp){
+        if (resp['code'] == '404') {
+            $.get('/ajax/category_create_form/', function (resp) {
+                $('#Content_Main').html(resp);
+                $('#cate-createform-box').find('input[type="submit"]').click(function () {
+                    var box = $('#cate-createform-box');
+                    var d_name = box.find('input[name="name"]').val();
+                    var d_intro = box.find('textarea[name="intro"]').val();
+                    var jdic ='{"name":"'+d_name+'","intro":"'+d_intro+'"}';
+                    $.ajax({
+                        type: 'POST',
+                        url: '/know/category/db/',
+                        data: 'action=create&data='+jdic,
+                        success: function (resp) {
+                            alert(resp);
+                        }
+                    });
+                    return false;
+                });
+            });
+        }
+    });
+</script>
+{% endblock %}
+
+{% block main_left %}
+
+
+{% for test in tests %}
+    {{ test.title }}
+{% endfor %}
+
+{% endblock %}

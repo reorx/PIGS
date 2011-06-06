@@ -1,3 +1,8 @@
+$(document).ajaxSend(function (evt, request, settings){
+    if (settings.type == 'POST') {
+        request.setRequestHeader("X-CSRFToken", $.cookie('csrftoken'));
+    }
+});
 // Global var //
 var AREA = {};
 var KNOWLEDGE = {};

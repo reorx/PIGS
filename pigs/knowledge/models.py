@@ -11,11 +11,13 @@ from me.models import BasicModel
 class Knowledge(BasicModel):
     """
     other attrs:
-    category, content(or segments), refer, tip(s)
+    nid, category, content(or segments), tip(s)
     """
+    u_id = IntegerField() # user id
+    c_id = IntegerField() # category id
+    father_id = IntegerField() # father knowledge id
     name = CharField(max_length=64)
     brief = TextField()
-    father_id = CharField(max_length=8)
     # refer #
     refer_object = CharField(max_length=128)
     refer_md5id = CharField(max_length=32)
@@ -32,7 +34,7 @@ class Knowledge(BasicModel):
             self.set_nid()
         if not self.md5id:
             self.set_md5id()
-        return super(Activity, self).save()
+        return super(Knowledge, self).save()
 
 class KnowledgeCategory(BasicModel):
     name = CharField(max_length=64)
@@ -46,6 +48,7 @@ class KnowledgeCategory(BasicModel):
         verbose_name_plural = u'Categorys'
 
 class KnowledgeSegment(BasicModel):
+    k_id = IntegerField()
     content = TextField()
 
     def __unicode__(self):
@@ -54,3 +57,8 @@ class KnowledgeSegment(BasicModel):
         db_table = 'knowledge_segment'
         verbose_name = u'segment'
         verbose_name_plural = u'segment'
+    def save(self):
+        super(KnowledgeSegment, self).save()
+        if not self.md5id:
+            self.set_md5id()
+        return super(KnowledgeSegment, self).save()

@@ -39,4 +39,3 @@ class BasicModel(Model):
             logging.error('DB Multiple User nid: ' + nid)
             return None
         return data
-

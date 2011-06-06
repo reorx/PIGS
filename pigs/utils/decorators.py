@@ -21,6 +21,13 @@ def login_required(fn):
         return fn(request, *args, **kwargs)
     return _wrapper
 
+def only_get(fn):
+    def _wrapper(request, *args, **kwargs):
+        if 'GET' != request.method:
+            return HttpResponse('method not allow')
+        return fn(request, *args, **kwargs)
+    return _wrapper
+
 def only_post(fn):
     def _wrapper(request, *args, **kwargs):
         if 'POST' == request.method:
