@@ -1,0 +1,30 @@
+/* general */
+/*
+html,body { padding: 0px;margin: 0px;height: 100%;position: relative;overflow-x: visible; }
+*/
+body {
+    margin: 0px;
+    padding: 0px;
+}
+h1,h2,h3,h4,h5,h6,
+p,ul,li {
+    margin: 0px;padding: 0px;
+}
+a, a:visited {
+    text-decoration: none;
+    color: #555;
+    cursor: pointer;
+}
+a:hover {
+    text-decoration: none;
+}
+ul {
+    list-style: none;
+}
+textarea {
+    resize: none;
+}
+
+/* common classes */
+.fn-hidden { display: none; }
+.fn-clearfix { clear: both; }

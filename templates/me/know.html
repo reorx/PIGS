@@ -6,6 +6,8 @@ Knowledge Main
 
 {% block extra_head %}
 <script type="text/javascript">
+    ManageCates();
+    /*
     $.getJSON('/know/category/', function (resp){
         if (resp['code'] == '404') {
             $.get('/ajax/category_create_form/', function (resp) {
@@ -28,6 +30,7 @@ Knowledge Main
             });
         }
     });
+    */
 </script>
 {% endblock %}
 

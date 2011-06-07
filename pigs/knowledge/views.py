@@ -76,7 +76,11 @@ def WriteKnowCategory(request):
     if 'POST' == request.method:
         action = request.POST.get('action', None)
         data = request.POST.get('data', None)
+        print data
         jdic = _dic(data)
+        print jdic
+        c = KnowledgeCategory(**jdic)
+        c.save()
         #if not data or not action:
             #raise Http404
         return HttpResponse('skdj')

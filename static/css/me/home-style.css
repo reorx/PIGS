@@ -1,3 +1,21 @@
+@import url(/static/css/ui/a.css);
+@import url(/static/css/ui/b.css);
+@import url(/static/css/ui/box.css);
+
+
+#cate-createform {
+    display: none;
+    height: 190px;
+    overflow: hidden;
+}
+#cate-createform input[type='text'] {
+    border: 1px solid #aaa;
+}
+#cate-createform textarea {
+    border: 1px solid #aaa;
+    width: 150px;height: 40px;
+}
+
 /* main */
 #Navs a,#Navs a:visited,
 #AppsArea a,#AppsArea a:visited {

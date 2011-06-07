@@ -1,0 +1,27 @@
+.ui-box-2 {
+    /*
+    background: #B0E1E8;
+    */
+    height: 100px;
+}
+.ui-box-2 .name {
+    background: #ADE0EA;
+    height: 30px;
+    font-size: 30px;
+    line-height: 30px;
+    font-weight: bold;
+    color: #222;
+    letter-spacing: 1px;
+    padding-left: 1px;
+}
+.ui-box-2 .content {
+}
+
+.ui-box-tt-0 {
+    font-size: 12px;
+    color: #333;
+    border: 1px solid #555;
+    -webkit-border-radius: 2px;
+    -webkit-box-shadow: 0 0 3px #888;
+    padding: 2px 5px;
+}

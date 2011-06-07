@@ -3,37 +3,37 @@ $(document).ajaxSend(function (evt, request, settings){
         request.setRequestHeader("X-CSRFToken", $.cookie('csrftoken'));
     }
 });
+function DumpFormData(obj) {
+    var jdic = {}
+    var inputs = obj.find('input');
+    var textareas = obj.find('textarea');
+    if (inputs.length > 0) {
+        inputs.each(function () {
+            jdic[$(this).attr('name')] = $(this).val();
+        });
+    }
+    if (textareas.length > 0) {
+        textareas.each(function () {
+            jdic[$(this).attr('name')] = $(this).val();
+        });
+    }
+    return $.toJSON(jdic);
+}
 // Global var //
 var AREA = {};
-var KNOWLEDGE = {};
-var INPUT = {};
-var OTHER = {};
-// fn //
-var REORX = {};
-REORX.UI = {};
-//  //
-AREA.ifKMshow = 'false';
-/*
- * infact, it should be:
- * var REORX = {};
- * REORX.DATA = {};
- * REORX.UI = {};
- * REORX.AJAX = {};
- * REORX.,,
- * */
-// document //
+/* Nav, Side, Main {top, left, right, middle, bottom}
+ * N, NT, NL, S, ST, SM, M, ML, MR
+ */
+var DOM = {}; // <dom></dom>
+DOM.cate = {};
+var DATA = {}; // data
+DATA.know = {};
+var UI = {}; // fn
+//AREA.ifKMshow = 'false';
+
 // calling fuction //
-function loading_on(status) {
-    var a = $('#loading');
-    if (a.css('display')=='none') {
-        a.fadeIn('500');
-    }
-    if (status) {
-        a.html(status);
-    }
-}
-function loading_off() {
-    $('#loading').delay('200').fadeOut('500');
+function noti(s) {
+    AREA.noti.html(s).fadeIn(500).delay(1000).fadeOut(1000);
 }
 function hideKnowledgeMenu() {
     $('#knowledgeMenu').css({display:'none'});
@@ -64,21 +64,34 @@ function ajax_get(url,Q) {
 // page request //
 function View_Category(id) {
     if (Boolean(id)) {
-        KNOWLEDGE.category_id = id;
+        DATA.know.category_id = id;
     } else {
-        id = KNOWLEDGE.category_id;
+        id = DATA.know.category_id;
     }
     $.ajax({
         type: 'GET',
         url: '/knowledge/view_category/?category='+id,
         success: function(html) {
-            AREA.view.html(html); // show info
-            if(AREA.operate_category.css('display')=='none'){ AREA.operate_category.show('500'); } //change operate area
+            AREA.SM.html(html); // show info
+            if(AREA.ST.css('display')=='none'){ AREA.ST.show('500'); } //change operate area
+        }
+    });
+}
+function ManageCates() {
+    $.ajax({
+        type: 'GET',
+        url: '/know/category/',
+        success: function(data) {
+            json = eval(data);
+            noti(json.message); // show info
+            AREA.ST.html('Categorys').show();
+            DOM.cate.create_form_wrap.appendTo(AREA.SM);
+            DOM.cate.create_b.appendTo(AREA.SM);
         }
     });
 }
 function View_KnowledgeList() {
-    id = KNOWLEDGE.category_id;
+    id = DATA.know.category_id;
     var url = '/knowledge/view_k_list/?category='+id;
     var DOM = '#View';
         $.ajax({
@@ -93,8 +106,8 @@ function View_KnowledgeList() {
         // jquery sortable //
 }
 function Content_Knowledge(id) {
-    if (id) { KNOWLEDGE.id = id; }
-    else { id = KNOWLEDGE.id }
+    if (id) { DATA.know.id = id; }
+    else { id = DATA.know.id }
     //
     var url =  '/knowledge/content_knowledge/?knowledge='+id;
     var DOM = '#Content_Main';
@@ -103,7 +116,7 @@ function Content_Knowledge(id) {
     Extend_K_Info()
 }
 function Extend_K_Info() {
-    var url = '/knowledge/extend_k_info/?k_id='+KNOWLEDGE.id;
+    var url = '/knowledge/extend_k_info/?k_id='+DATA.know.id;
     var Q = '#contentExtend';
     ajax_get(url,Q);
 }
@@ -123,16 +136,16 @@ function Content_Add(what,mode) {
                     success: function(html){
                         $(DOM2).html(html);
                         if (mode=="child") {
-                            $.get('/knowledge/get_self_title/?knowledge_id='+KNOWLEDGE.id,function(html){
+                            $.get('/knowledge/get_self_title/?knowledge_id='+DATA.know.id,function(html){
                                 $('#InputParent').val(html);
                                 loading_off();
                                 //
-                                KNOWLEDGE.id = '';
+                                DATA.know.id = '';
                             });
                         }
                         if (mode=='multiple') {
                             loading_off();
-                            KNOWLEDGE.id = '';
+                            DATA.know.id = '';
                         }
                     }
                 });
@@ -150,13 +163,13 @@ function Content_EditPage() {
     var DOM2 = '#contentExtend';
     $.ajax({
         type: 'GET',
-        url: '/knowledge/editor_contentpart/?knowledge_id='+KNOWLEDGE.id,
+        url: '/knowledge/editor_contentpart/?knowledge_id='+DATA.know.id,
         success: function(html){
             $(DOM1).html(html);
             //
             $.ajax({
                 type: 'GET',
-                url: '/knowledge/editor_extendpart/?mode=edit&knowledge_id='+KNOWLEDGE.id,
+                url: '/knowledge/editor_extendpart/?mode=edit&knowledge_id='+DATA.know.id,
                 success: function(html){
                     $(DOM2).html(html);
                     $('#Tips_wrap').show();
@@ -170,7 +183,7 @@ function Content_EditPage() {
 function delete_knowledge() {
     $.ajax({
         type: 'GET',
-        url: '/knowledge/delete/?knowledge_id='+KNOWLEDGE.id,
+        url: '/knowledge/delete/?knowledge_id='+DATA.know.id,
         success: function(status){
             if (status=='') {
                 loading_on('can\'t be deleted');
@@ -180,9 +193,6 @@ function delete_knowledge() {
             }
         }
     });
-}
-REORX.UI.ox = function () {
-    alert('ox');
 }
 // setTimeout //
 function $setTimeout(fn,t) {
@@ -194,11 +204,40 @@ function $setTimeout(fn,t) {
 $(document).ready(function() {
     // Golbal //
         // Knowledge
-        KNOWLEDGE.id = '';
+        DATA.know.id = '';
         //_Area
-        AREA.view = $('#View');
-        AREA.operate_category = $('#operate_category');
+        AREA.noti = $('#loading');
+        AREA.SM = $('#View');
+        AREA.ST = $('#operate_category');
+        AREA.ML = $('#Content_Main');
         AREA.k_menu_status = 0;
+        // DOM
+        DOM.cate.create_form = $('<div>', {
+            id: 'cate-createform',
+            
+        }).append('<input type="text" name="name" /> <textarea id="" name="intro" rows="10" cols="30"></textarea>');
+        DOM.cate.create_form_wrap = $('<div>').css('height','0px').append(DOM.cate.create_form);
+        DOM.cate.create_b = $('<div>', {
+            'class': 'ui-b-9',
+            text: '+',
+            click: function () {
+                DOM.cate.create_form_wrap.animate({
+                    height: '200px',
+                }, 2000, function(){
+                    DOM.cate.create_form.show();
+                });
+                $(this).html('save?').click(function () {
+                    $.ajax({
+                        type: 'POST',
+                        url: '/know/category/db/',
+                        data: 'action=create&data='+DumpFormData(DOM.cate.create_form),
+                        success: function (resp) {
+                            alert(resp);
+                        }
+                    });
+                });
+            }
+        });
     // css relay //
     $('.NavTags').each(function(){
         var w = ($(this).children().eq(0).width()+1)*($(this).children().length-1)+$('#Manage_category').width();

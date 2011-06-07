@@ -1,0 +1,22 @@
+.ui-a-0, .ui-a-0:visited {
+    color: #118bc1;
+    font-size: 13px;
+    font-weight: normal;
+    letter-spacing: 1px;
+    outline: medium none; /* important for remove dot-border of a */
+}
+.ui-a-0:hover {
+    /*background: #4b67a1;  fb nav hover color */
+    font-weight: bold;
+}
+
+.ui-a-2, .ui-a-2:visited {
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: #888;
+    background: #fff;
+    border: 1px solid #aaa;
+    -webkit-border-radius: 5px;
+    text-align: center;
+}
+

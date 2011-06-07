@@ -1,3 +1,15 @@
+.ui-b-9 {
+    height: 30px;
+    background: #eee;
+    color: #333;
+    font-size: 30px;line-height: 30px;text-align: center;font-weight: bold;
+    pointer: cursor;
+}
+.ui-b-9:hover {
+    background: #ccc;
+}
+
+
 /* shadow */
 .shadow_0 {
     -moz-box-shadow: 2px 2px 5px #888;
