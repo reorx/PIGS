@@ -2,12 +2,14 @@
 import os
 ROOT_PATH = os.path.dirname(__file__)
 
+ADMIN = True
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
 )
+
 
 MANAGERS = ADMINS
 

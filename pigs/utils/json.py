@@ -1,7 +1,4 @@
-try:
-    import cjson as json # cjson is more effective
-except ImportError:
-    from django.utils import simplejson as json
+from django.utils import simplejson as json
 
 class DateTimeJSONEncoder(json.JSONEncoder):
     """

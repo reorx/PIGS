@@ -1,11 +1,7 @@
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
-
-try:
-    import cjson as simplejson # cjson is more effective
-except ImportError:
-    from django.utils import simplejson
+from django.utils import simplejson
 
 class DateTimeJSONEncoder(simplejson.JSONEncoder):
     """

@@ -1,3 +1,4 @@
+import os
 from django.conf.urls.defaults import *
 
 urlpatterns = patterns('django.contrib.auth.views',
@@ -21,8 +22,8 @@ urlpatterns += patterns('knowledge.views',
 #)
 
 
+from settings import ADMIN, DEBUG, MEDIA_ROOT
 # enable admin
-from config import ADMIN
 if ADMIN:
     from django.contrib import admin
     admin.autodiscover()
@@ -30,9 +31,7 @@ if ADMIN:
         (r'^admin/',include(admin.site.urls)),
     )
 # enable static server in debug mode
-from settings import DEBUG, MEDIA_ROOT
 if DEBUG:
-    import os.path
     ROOT = os.path.dirname(__file__)
     STATIC_ROOT = os.path.join(ROOT, '../static')
     urlpatterns += patterns( '',
