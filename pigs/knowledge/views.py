@@ -12,6 +12,8 @@ from utils.json import _dic, _json
 
 from knowledge.models import Knowledge, KnowledgeCategory, KnowledgeSegment
 
+jdic = {'code':404,'message':'Not Found','data':None}
+
 @only_get
 @login_required
 def ReadKnow(request):
@@ -33,7 +35,6 @@ def ReadKnow(request):
         c_id = int(c_id)
     except:
         c_id = None
-    jdic = {'code':404,'message':'Not Found','data':None}
 
     if not nid:
         if data_type == 'html':
@@ -76,14 +77,19 @@ def WriteKnowCategory(request):
     if 'POST' == request.method:
         action = request.POST.get('action', None)
         data = request.POST.get('data', None)
-        print data
-        jdic = _dic(data)
-        print jdic
-        c = KnowledgeCategory(**jdic)
-        c.save()
+        edic = _dic(data)
+        c = KnowledgeCategory(**edic)
+        st = c.save()
+        if not st:
+            jdic['code'] = 303
+            jdic['message'] = 'save error'
+            return jdic
+        jdic['code'] = 200
+        jdic['message'] = 'save ok'
+        return render_json(request, jdic)
+
         #if not data or not action:
             #raise Http404
-        return HttpResponse('skdj')
     if 'DELETE' == request.method:
         return HttpResponse('delete')
     return HttpResponse('failed')

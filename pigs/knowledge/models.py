@@ -3,6 +3,7 @@
 import logging
 import time, datetime
 from hashlib import md5
+import MySQLdb as DB
 from django.db.models.base import Model
 from django.db.models import *
 
@@ -37,8 +38,8 @@ class Knowledge(BasicModel):
         return super(Knowledge, self).save()
 
 class KnowledgeCategory(BasicModel):
-    name = CharField(max_length=64)
-    intro = TextField()
+    name = CharField(max_length=64, unique=True, null=False)
+    intro = TextField(null=True)
 
     def __unicode__(self):
         return self.name
@@ -46,6 +47,14 @@ class KnowledgeCategory(BasicModel):
         db_table = 'knowledge_category'
         verbose_name = u'Category'
         verbose_name_plural = u'Categorys'
+    def save(self):
+        try:
+            super(KnowledgeCategory, self).save()
+            return True
+        except:
+            print 'save error'
+            return False
+
 
 class KnowledgeSegment(BasicModel):
     k_id = IntegerField()

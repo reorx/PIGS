@@ -221,18 +221,30 @@ $(document).ready(function() {
             'class': 'ui-b-9',
             text: '+',
             click: function () {
+                // anime: roll down
                 DOM.cate.create_form_wrap.animate({
                     height: '200px',
-                }, 2000, function(){
+                }, 500, function(){
                     DOM.cate.create_form.show();
                 });
-                $(this).html('save?').click(function () {
+                $(this).html('save?').unbind().click(function () {
                     $.ajax({
                         type: 'POST',
                         url: '/know/category/db/',
                         data: 'action=create&data='+DumpFormData(DOM.cate.create_form),
                         success: function (resp) {
-                            alert(resp);
+                            json = eval(resp);
+                            noti(json.message);
+                            if (resp.code == 200) {
+                                alert('load ajax');
+                                // anime: roll up
+                                DOM.cate.create_form.hide();
+                                DOM.cate.create_form_wrap.animate({
+                                    height: '0px',
+                                }, 500, function(){
+                                    $(this).html('+');
+                                });
+                            }
                         }
                     });
                 });
