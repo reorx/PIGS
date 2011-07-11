@@ -24,43 +24,54 @@ class KnowForm(forms.ModelForm):
     refer_md5id = forms.CharField(max_length=32, required=False)
     father_nid = forms.CharField(max_length=8, required=False) # father & son
     ##
-    tags = forms.CharField(max_length=256)
+    tags = forms.CharField(max_length=256, required=False)
     class Meta:
-        model = Category
-    def __init__(self, instance=None, *args, **kwargs):
-        self._instance = instance
-        super(KnowForm, self).__init__(*args, **kwargs)
+        model = Knowledge
+        fields = ('category', 'name', 'brief', 'refer_object', 'refer_md5id', 'father_nid', 'tags')
     def clean_category(self):
-        """nid -> object"""
-        data = self.cleaned_data['category']
+        """
+        nid -> object
+        """
+        data = self.cleaned_data.get('category')
         category = Category.by_nid(data)
         if not category:
-            raise ValidationError('Category Unexist')
+            raise forms.ValidationError('Category Unexist')
         return category
-    def clean_refer_md5id(self):
+    def clean_refer_md5id(self): # not required
         """
         require refer_object same time
         """
-        data = self.cleaned_data['refer_md5id']
-        object_model = get_model(self.cleaned_data['refer_object'])
-        if not object_model:
+        data = self.cleaned_data.get('refer_md5id')
+        data_object = self.cleaned_data.get('refer_object')
+        if not data:
+            return None
+        if not data_object:
+            raise forms.ValidationError('Need refer object')
+        try:
+            object_model = get_model(*data_object.split('.'))
+        except:
             raise forms.ValidationError("Invalid refer object")
         try:
             ins = object_model.objects.get(md5id=data)
         except:
             raise forms.ValidationError("Invalid refer md5id")
         return data
-    def clean_father_nid(self):
-        data = self.cleaned_data['father_nid']
+    def clean_father_nid(self): # not required
+        data = self.cleaned_data.get('father_nid')
+        if not data:
+            return None
         if not Knowledge.by_nid(data):
             raise forms.ValidationError('Invalid father nid')
         return data
-    def cleaned_tags(self):
+    def cleaned_tags(self): # not required
+        data = self.cleaned_data.get('tags')
+        if not data:
+            return None
         """seperated by commas (both in zh & en)"""
         comma_zh = u'，'
         comma_en = ','
         tag_list = []
-        loop0 = self.cleaned_data['tags']
+        loop0 = data
         loop1 = loop0.split(comma_en)
         for i in loop1:
             if i.find(comma_zh):
@@ -71,9 +82,4 @@ class KnowForm(forms.ModelForm):
         # check tags #
         #for i in tag_list:
     def save(self, *args, **kwargs):
-        data = self.cleaned_data
-        ins = self._instance
-        if ins:
-            return SerialSave(ins, data)
-        else:
-            return super(KnowForm, self).save(*args, **kwargs)
+        return super(KnowForm, self).save(*args, **kwargs)

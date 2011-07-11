@@ -1,0 +1,77 @@
+{% extends 'me/base.html' %}
+
+{% block head_title %}
+Knowledge Modifying
+{% endblock %}
+
+{% block head_extra %}
+<link media="all" rel="stylesheet" href="/static/.css" type="text/css" />
+<script src="" type="text/javascript"></script>
+{% endblock %}
+
+{% block control_panel %}
+{% endblock %}
+
+{% block main_left %}
+<h2>Modify Knowledge</h2>
+<div>
+    <form action="/know/w/{{ form.instance.nid }}/" method="post">
+        <div>
+            <div>category:</div>
+            {{ form.category }}
+        </div>
+        <div>
+            <div>name:</div>
+            {{ form.name }}
+        </div>
+        <div>
+            <div>brief:</div>
+            {{ form.brief }}
+        </div>
+        <div>
+            <div>refer object:</div>
+            {{ form.refer_object }}
+        </div>
+        <div>
+            <div>refer md5id:</div>
+            {{ form.refer_md5id }}
+        </div>
+        <div>
+            <div>father nid:</div>
+            {{ form.father_nid }}
+        </div>
+        <div>
+            <div>tags:</div>
+            {{ form.tags }}
+        </div>
+
+        <div>
+            <input type="submit" value="Submit" />
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block main_right %}
+    {% if form.errors %}
+        <div>
+            Errors:
+        </div>
+        {% for k,v in form.errors.items %}
+        <div>
+            <span>{{ k }}</span> <span style="color: red">{{ v }}</span>
+        </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block none %}
+
+    {% for test in tests %}
+        {{ test.title }}
+    {% endfor %}
+
+    {% if test %}
+    {% endif %}
+
+{% endblock %}

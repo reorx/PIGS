@@ -7,13 +7,62 @@
 {% block head_extra %}
     <link media="all" rel="stylesheet" href="/static/css/me/home.css" type="text/css" />
     <script src="/static/js/home.js" type="text/javascript"></script>
+    <style type="text/css">
+        #MainLeft .content_block {
+            border-bottom: 1px solid #aaa;
+            position: relative;
+            margin-bottom: 10px;
+            min-height: 30px;
+        }
+        #MainLeft .content_block:last-child {
+            margin-top: 50px;
+        }
+        #MainLeft .content_block span {
+            position: absolute;
+            display: block;
+            right: 0px;bottom: 0px;
+            background: #ddd;
+            height: 15px;
+            margin: 0px;padding: 0 5px;
+            font-size: 11px;
+            color: #333;
+            font-weight: normal;
+            letter-spacing: 1px;
+        }
+    </style>
 {% endblock %}
 
 {% block control_panel %}
 {% endblock %}
 
 {% block main_left %}
-<h1>{{ know.name }}</h1>
+<h1 class="content_block">
+    {{ know.name }}
+    <span>name | category: {{ know.category.name }}</span>
+</h1>
+<div class="content_block">
+    {{ know.brief }}
+    <span>brief</span>
+</div>
+<div class="content_block">
+    {{ know.refer }}
+    <span>refer</span>
+</div>
+<div class="content_block">
+    <a href="">{{ know.father.name }}</a>
+    <span>father</span>
+</div>
+<div class="content_block">
+    {% for k in know.children %}
+    <a href="">{{ know.father.name }}</a>
+    {% endfor %}
+    <span>children</span>
+</div>
+<div class="content_block">
+    <a href="/know/w/{{ know.nid }}/">update</a>
+    <a href="/know/w/{{ know.nid }}/?delete=1">delete</a>
+    <span>operations</span>
+</div>
 {% endblock %}
 
 {% block main_right %}

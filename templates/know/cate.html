@@ -10,20 +10,16 @@ Categorys
 {% endblock %}
 
 {% block control_panel %}
-<div>
-    {% for c in categorys %}
-    <a href="/know/category/r/{{ c.nid }}/">
-        <div> {{ c.name }} </div>
-    </a>
-    {% endfor %}
-</div>
 
 {% endblock %}
 
 {% block main_left %}
-<a href="/know/category/w/">
-    <h1>Create Category</h1>
-</a>
+<h2>{{ category.name }}</h2>
+<p>{{ category.description }}</p>
+<div>
+    <a href="/know/category/w/{{ category.nid }}/">update</a>
+    <a href="/know/category/w/{{ category.nid }}/?delete=1">delete</a>
+</div>
 {% endblock %}
 
 {% block main_right %}

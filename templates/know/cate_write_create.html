@@ -1,0 +1,52 @@
+{% extends 'me/base.html' %}
+
+{% block head_title %}
+Categorys
+{% endblock %}
+
+{% block head_extra %}
+<link media="all" rel="stylesheet" href="/static/.css" type="text/css" />
+<script src="" type="text/javascript"></script>
+{% endblock %}
+
+{% block control_panel %}
+{% endblock %}
+
+{% block main_left %}
+<h2>Create New Category</h2>
+<div>
+    <form action="/know/category/w/" method="post">
+        <div>
+            <div>name:</div>
+            {{ form.name }}
+        </div>
+        <div>
+            <div>description:</div>
+            {{ form.description }}
+        </div>
+        <div>
+            <input type="submit" value="Submit" />
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block main_right %}
+    {% if form.errors %}
+    Errors:
+    {% for k in form.errors %}
+        {{ form.errors[k] }}
+    {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block none %}
+
+    {% for test in tests %}
+        {{ test.title }}
+    {% endfor %}
+
+    {% if test %}
+    {% endif %}
+
+{% endblock %}

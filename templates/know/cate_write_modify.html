@@ -10,20 +10,28 @@ Categorys
 {% endblock %}
 
 {% block control_panel %}
-<div>
-    {% for c in categorys %}
-    <a href="/know/category/r/{{ c.nid }}/">
-        <div> {{ c.name }} </div>
-    </a>
-    {% endfor %}
-</div>
-
 {% endblock %}
 
 {% block main_left %}
-<a href="/know/category/w/">
-    <h1>Create Category</h1>
-</a>
+<h2>Modify Category</h2>
+<div>
+    {% if form.errors %}
+        Errors: {{ form.errors }}
+    {% endif %}
+    <form action="/know/category/w/{{ form.instance.nid }}/" method="post">
+        <div>
+            <div>name:</div>
+            {{ form.name }}
+        </div>
+        <div>
+            <div>description:</div>
+            {{ form.description }}
+        </div>
+        <div>
+            <input type="submit" value="Submit" />
+        </div>
+    </form>
+</div>
 {% endblock %}
 
 {% block main_right %}

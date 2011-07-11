@@ -13,57 +13,111 @@ from knowledge.forms import CategoryForm, KnowForm
 def site_entrance(request, tpl='me/home.html'):
     return render_tpl(request, tpl)
 
-def know_home(req, tpl='know/home.html'):
-    return render_tpl(req, tpl)
+def cate_home(req, tpl='know/cate_home.html'):
+    cdic = {}
+    cdic['categorys'] = know_QS.categorys()
+    return render_tpl(req, tpl, cdic)
 
-@only_method('GET')
-def know_read(req, nid=None, tpl='know/know.html'):
-    """
-    when GET, args are:
-        - nid - with_child    (0, 1)
-        - data_type          'json','html'[default]
-        - c_id
-    well, POST not allow
-    """
-    # args init #
-    with_child = req.GET.get('with_child',None)
-    #data_type = request.GET.get('data_type', 'html')
-    # get QuerySet #
-    qs = know_QS.know(nid, with_child)
+def cate_read(req, nid=None, tpl='know/cate.html'):
+    qs = know_QS.category(nid)
     if qs is None:
         raise Http404
-    # responsing #
+    cdic = dict(
+        category = qs
+    )
+    return render_tpl(req, tpl, cdic)
+
+def cate_write_create(req, tpl='know/cate_write_create.html'):
+    if 'GET' == req.method:
+        cdic = dict(
+            form = CategoryForm()
+        )
+        return render_tpl(req, tpl, cdic)
+    if 'POST' == req.method:
+        form = CategoryForm(data=req.POST)
+        if not form.is_valid():
+            cdic = dict(
+                form = form
+            )
+            return render_tpl(req, tpl, cdic)
+        form.save()
+        return HttpResponseRedirect('/know/category/')
+    return HttpResponse('405 method error')
+
+def cate_write_modify(req, nid=None, tpl='know/cate_write_modify.html'):
+    qs = know_QS.category(nid)
+    if qs is None:
+        raise Http404
+    if 'GET' == req.method:
+        cmd_delete = req.GET.get('delete')
+        if str(1) == cmd_delete:
+            qs.delete()
+            return HttpResponseRedirect('/know/category/')
+        cdic = dict(
+            form = CategoryForm(instance=qs)
+        )
+        return render_tpl(req, tpl, cdic)
+    if 'POST' == req.method:
+        form = CategoryForm(data=req.POST, instance=qs)
+        if not form.is_valid():
+            cdic = dict(
+                form = form
+            )
+            return render_tpl(req, tpl, cdic)
+        form.save()
+        return HttpResponseRedirect('/know/category/')
+    return HttpResponse('405 method error')
+
+def know_home(req, tpl='know/home.html'):
+    cdic = {}
+    cdic['knows'] = know_QS.knows()
+    return render_tpl(req, tpl, cdic)
+
+def know_read(req, nid=None, tpl='know/know.html'):
+    """
+    preparing rules for api:
+        when GET, args are:
+            - nid - with_child    (0, 1)
+            - data_type          'json','html'[default]
+            - c_id
+        well, POST not allow
+    """
+    qs = know_QS.know(nid)
+    if qs is None:
+        raise Http404
     cdic = dict(
         know = qs
     )
     return render_tpl(req, tpl, cdic)
 
-@only_method('POST')
-def know_write(req):
-    pass
-
-def cate_home(req, tpl='know/cate_home.html'):
-    form = CategoryForm()
-    cdic = {'form': form}
-    return render_tpl(req, tpl, cdic)
-
-def cate_read(req):
-    pass
-
-@only_method('POST')
-def cate_write_create(req):
-    print req.POST
-    form = CategoryForm(data=req.POST)
-    if not form.is_valid():
-        print 'not valid'
+def know_write_create(req, tpl='know/know_write_create.html'):
+    if 'GET' == req.method:
         cdic = dict(
-            form = form
+            form = KnowForm()
         )
-        return render_tpl(req, 'know/cate_home.html', cdic)
-    print 'is valid'
-    print dir(form)
-    form.save()
-    return HttpResponseRedirect('/know/category/')
+        return render_tpl(req, tpl, cdic)
+    if 'POST' == req.method:
+        form = KnowForm(data=req.POST)
+        if not form.is_valid():
+            cdic = dict(
+                form = form
+            )
+            return render_tpl(req, tpl, cdic)
+        form.save()
+        return HttpResponseRedirect('/know/')
+    return HttpResponse('405 method error')
 
-def cate_write_modify(req):
-    pass
+def know_write_modify(req, nid=None, tpl='know/know_write_modify.html'):
+    qs = know_QS.know(nid)
+    print qs
+    print dir(qs)
+    print qs.brief
+    if qs is None:
+        raise Http404
+    if 'GET' == req.method:
+        cdic = dict(
+            form = KnowForm(instance=qs),
+            form_ins = qs
+        )
+        return render_tpl(req, tpl, cdic)
+    return HttpResponse('405 method error')

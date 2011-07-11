@@ -15,32 +15,50 @@ def segment():
 def segments():
     pass
 
-def know(nid, with_child=None):
+def know(nid,
+        with_refer=True,
+        with_children=True,
+        children_with_refer=True):
     def add_segments(k):
         k.segments = k._segments.all()
         return k
+    def add_refer(k):
+        if k.refer_md5id and k.refer_object:
+            pass
+        return k
+    def add_children(k):
+        k.children = [add_segments(i) for i in KM.filter(father_nid=nid)]
+        return k
     ##
     try:
-        know = add_segments(KM.get(nid=nid))
+        k = KM.get(nid=nid)
     except Knowledge.DoesNotExist:
         return None
-    if with_child:
-        know.childs = [add_segments(i) for i in Knowledge.objects.filter(father_nid=nid)]
-    return know
+    k = add_segments(k) # segments added
+    if with_refer: # refer adding
+        k = add_refer(k)
+    if with_children: # children adding
+        k = add_children(k)
+    return k
 
-def knows(c_id):
+def knows(c_id=None):
+    if c_id:
+        try:
+            category = CM.get(id=c_id)
+        except Category.DoesNotExist:
+            return None
+        knows = KM.filter(category=category)
+        return knows # could be None
+    else:
+        #TODO tree structure knows
+        return KM.all()
+
+def category(nid):
     try:
-        category = CM.get(id=c_id)
+        category = CM.get(nid=nid)
     except Category.DoesNotExist:
         return None
-    knows = KM.filter(category=category)
-    return knows # could be None
-
-    
-    pass
-
-def category():
-    pass
+    return category
 
 def categorys():
-    pass
+    return CM.all()

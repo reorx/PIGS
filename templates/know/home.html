@@ -10,9 +10,17 @@
 {% endblock %}
 
 {% block control_panel %}
+    {% for k in knows %}
+    <a href="/know/r/{{ k.nid }}/">
+        <div> {{ k.name }} </div>
+    </a>
+    {% endfor %}
 {% endblock %}
 
 {% block main_left %}
+<a href="/know/w/">
+    <h1> Create Knowledge </h1>
+</a>
 {% endblock %}
 
 {% block main_right %}
