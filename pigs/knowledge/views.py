@@ -11,6 +11,7 @@ from utils.decorators import only_get
 from utils.json import _dic, _json
 
 from knowledge.models import Knowledge, KnowledgeCategory, KnowledgeSegment
+from knowledge import QS as know_QS
 
 jdic = {'code':404,'message':'Not Found','data':None}
 
@@ -20,38 +21,10 @@ def ReadKnow(request):
     """
     when GET, args are:
         - nid - with_child    (0, 1)
-        - data_type          'json','html'[default]
-        - c_id
+        - data_type           'json','html'[default]
+        - c_id                category id
     well, POST not allow
     """
-    if 'GET' != request.method:
-        raise Http404
-    # args init #
-    nid = request.GET.get('nid', None)
-    with_child = request.GET.get('with_child',None)
-    data_type = request.GET.get('data_type', 'html')
-    c_id = request.GET.get('c_id', None)
-    try:
-        c_id = int(c_id)
-    except:
-        c_id = None
-
-    if not nid:
-        if data_type == 'html':
-            return render_tpl(request, 'me/know.html')
-        if data_type == 'json':
-            if c_id:
-                ctgr = KnowldegeCategory.by_id(c_id)
-            return render_json(request, jdic)
-    know = Knowledge.by_nid(nid)
-    if not know:
-        raise Http404
-    if data_type == 'html':
-        return render_tpl(request, 'me/know.html')
-    if data_type == 'json':
-        jdic['data']
-        return render_json(request, jdic)
-    return HttpResponse('failed')
 
 @login_required
 def WriteKnow(request):

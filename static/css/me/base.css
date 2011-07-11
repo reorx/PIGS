@@ -1,0 +1,144 @@
+@import url(/static/css/ui/a.css);
+@import url(/static/css/ui/b.css);
+@import url(/static/css/ui/box.css);
+
+/* invisibles */
+#Noti {
+    width: 300px;height: 20px;
+    background: red;
+    position: absolute;
+    left: 301px;top: 51px;
+    display: none;
+    z-index: 9999;
+}
+#KMenu {
+    position: absolute;
+    width: 25px;height: 62px;
+    border: 1px solid #000;
+    z-index: 100;
+}
+
+/* #Header */
+#Header {
+    position: relative;
+    height: 50px;
+    background: #fff;
+    border-bottom: 1px solid #000;
+}
+/* #Chaos */
+#Chaos {
+    position: absolute;
+    left: 0px;top: 0px;
+    width: 49px;height: 50px;
+    border-right: 1px solid #000;
+    background: #fff;
+    z-index: 999;
+}
+#C0, #C1, #C2 { position: absolute;left:0px;top:0px;background: #fff; }
+#C0, #C1 { border-right: 1px solid #000;border-bottom: 1px solid #000; }
+#C0 { width: 29px;height: 29px;z-index: 999; }
+#C0:hover { background: #9a3; }
+#C1 { width: 39px;height: 39px;z-index: 99;}
+#C1:hover { background: #2e2; }
+#C2 { right:0px; bottom:0px; z-index:9;}
+#C2:hover { background: #3f1; }
+
+/* #TopNav */
+#TopNav {
+    position: absolute;
+    left: 50px;right: 0px;top: 0px;
+    height: 50px;
+}
+/* #Apps */
+#Sidebar {
+    position: absolute;
+    left: 0px;top: 51px/* #RootNav->border-bottom */;bottom: 0px;
+    width: 49px;
+    border-right: 1px solid #000;
+}
+#ToggleAppsNav {
+}
+#AppsNav {
+}
+
+/* #ControlPanel */
+#ControlPanel {
+    position: absolute;
+    left: 50px;top: 51px;bottom: 0px;
+    width: 250px;
+    border-right: 1px solid #000;
+}
+#CPTop {
+    position: absolute;
+    left: 0px;right: 0px;top: 0px;
+    height: 30px;
+    overflow: hidden;
+    background: #fff;
+    border-bottom: 1px solid #000;
+}
+#CPTopMenu {
+    position: absolute;
+    left: 0px;right: 0px;top: 0px;bottom: 0px;
+}
+#CPMiddle {
+    position: absolute;
+    left: 0px;right: 0px; top: 31px /*#OperateArea->height*/; bottom: 0px;
+}
+#CPMiddle .container {
+    position: absolute;
+    left: 0px;right: 0px;top: 5px;bottom: 10px;
+    background: #fff;
+    overflow-y: hidden;
+}
+
+/** other area layout **/
+#Main {
+    position: absolute;
+    left: 350px /*.LeftNarrow->width*/;right: 0px;top: 80px;bottom: 0px;
+    border-left: 1px solid #000;
+    border-top: 1px solid #000;
+    border-right: 1px solid #000;
+    border-top-right-radius: 10px;
+    -moz-box-shadow: 0px 0px 8px #aaa;
+    -webkit-box-shadow: 0px 8px 8px #aaa;
+}
+#MainLeft {
+    position: absolute;
+    left: 0px;right: 200px;top: 0px;bottom: 0px;
+    overflow-x: hidden;
+}
+#MainRight {
+    position: absolute;
+    right: 0px;top: 0px;bottom: 0px;
+    width: 199px;
+    border-left: 1px solid #000;
+}
+
+/* classes */
+
+/* .nav */
+.nav {
+    position: relative;
+    float: left;
+    width: 49px;height: 50px;
+    border-right: 1px solid #000;
+    font-size: 30px;line-height: 50px;text-align: center;
+    z-index: 9;
+}
+.nav-tags {
+    position: absolute;
+    left: 50px;top: 9px;bottom: 9px;
+    z-index: 1;
+}
+.nav-tags a {
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    border-right: 1px solid #000;
+    z-index: 1;
+}
+.nav-gap{
+    display: none;
+    position: relative;
+    float: left;
+    height: 50px;
+}

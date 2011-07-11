@@ -40,5 +40,3 @@ def pageSplit(list,limit,now):
     page.final = str(final)
 
     return new_list,page
-
-

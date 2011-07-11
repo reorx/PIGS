@@ -1,10 +1,10 @@
-.ui-box-2 {
+.box-2 {
     /*
     background: #B0E1E8;
     */
     height: 100px;
 }
-.ui-box-2 .name {
+.box-2 .name {
     background: #ADE0EA;
     height: 30px;
     font-size: 30px;
@@ -14,10 +14,10 @@
     letter-spacing: 1px;
     padding-left: 1px;
 }
-.ui-box-2 .content {
+.box-2 .content {
 }
 
-.ui-box-tt-0 {
+.box-tt-0 {
     font-size: 12px;
     color: #333;
     border: 1px solid #555;

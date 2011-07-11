@@ -1,0 +1,15 @@
+
+#cate-createform {
+    display: none;
+    height: 190px;
+    overflow: hidden;
+}
+#cate-createform input[type='text'] {
+    border: 1px solid #aaa;
+}
+#cate-createform textarea {
+    border: 1px solid #aaa;
+    width: 150px;height: 40px;
+}
+
+/* main */

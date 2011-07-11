@@ -1,32 +1,4 @@
 /* #control */
-#Control {
-    position: absolute;
-    left: 50px;top: 51px;bottom: 0px;
-    width: 250px;
-    border-right: 1px solid #000;
-}
-#operateInList {
-    position: absolute;
-    left: 0px;right: 0px;top: 0px;
-    height: 30px;
-    overflow: hidden;
-    background: #fff;
-    border-bottom: 1px solid #000;
-}
-.operateInList {
-    position: absolute;
-    left: 0px;right: 0px;top: 0px;bottom: 0px;
-}
-#View_area {
-    position: absolute;
-    left: 0px;right: 0px; top: 31px /*#OperateArea->height*/; bottom: 0px;
-}
-#View {
-    position: absolute;
-    left: 0px;right: 0px;top: 5px;bottom: 10px;
-    background: #fff;
-    overflow-y: hidden;
-}
 /* #Control//#List */
 .knowledge_wrap {
     position: relative;

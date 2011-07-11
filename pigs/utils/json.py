@@ -1,6 +1,8 @@
-from django.utils import simplejson as json
+#coding=utf-8
+import datetime
+from django.utils import simplejson as pyjson
 
-class DateTimeJSONEncoder(json.JSONEncoder):
+class DateTimeJSONEncoder(pyjson.JSONEncoder):
     """
     copy from django.core.serializers.json
     """
@@ -17,11 +19,9 @@ class DateTimeJSONEncoder(json.JSONEncoder):
         else:
             return super(DateTimeJSONEncoder, self).default(o)
 
-def dumps(o, **kwargs):
-    return json.dumps(o, ensure_ascii=False,cls=DateTimeJSONEncoder, **kwargs)
+def _dic(json):
+    return pyjson.loads(json)
 
-def _dic(json_data):
-    return json.loads(json_data)
+def _json(dic):
+    return pyjson.dumps(dic, ensure_ascii=False, cls=DateTimeJSONEncoder)
 
-def _json(dic_data):
-    return dumps(dic_data)

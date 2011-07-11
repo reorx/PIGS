@@ -9,39 +9,14 @@
     background: #ccc;
 }
 
-
-/* shadow */
-.shadow_0 {
-    -moz-box-shadow: 2px 2px 5px #888;
-    -webkit-box-shadow: 2px 2px 5px #888;
-}
-
-/* z-index */
-#Header, #AppsArea, #ListArea, #Content {
-    z-index: 0;
-}
-#KnowledgeButton {
-    background: #fff;
-    z-index: 5;
-}
-#Home {
-    background: #fff;
-    z-index: 10;
-}
-/* Button */
-.button_root {
+.b-nav-0 {
     display: block;
-    float: left;
-    width: 50px;height: 40px;
-    font-size: 30px;line-height: 50px;text-align: center;
-    border: none;
+    position: absolute;
+    left: 0px;right: 0px;top: 0px;bottom: 0px;
+    background: #fff;
+    z-index: 100;
 }
-/*.button_root:hover {
-    width: 48px;
-    border-left: 1px solid #000;
-    border-right: 1px solid #000;
-}*/
-.Button_RB {
+.b-nav-1 {
     /* size */
     float: left;
     width: 70px;height: 30px;
@@ -62,11 +37,18 @@
     text-shadow: 3px 3px 5px #fff;
     z-index: 1;
 }
-.Button_RB:hover {
+.b-nav-1:hover {
     text-decoration: underline;
 }
-
-.Button_RS {
+.b-app-0 {
+    display: block;
+    position: absolute;
+    left: 0px;right: 0px;top: 0px;
+    height: 50px;
+    font-size: 30px;line-height: 50px;text-align: center;
+    border-bottom: 1px solid #000;
+}
+.b-cp-0 {
     /* size */
     float: left;
     width: 40px;height: 30px;
@@ -85,13 +67,14 @@
     text-align: center;
     letter-spacing: 1px;
 }
-.Button_RS:hover {
+.b-cp-0:hover {
     /* shadow */
     -moz-box-shadow: 0px 0px 5px #444;
     -webkit-box-shadow: 0px 0px 5px #444;
     text-shadow: 1px 1px 1px #555;
 }
-.Button_KM {
+
+.b-km-0 {
     /* size */
     float: left;
     width: 25px;height: 20px;
@@ -109,9 +92,23 @@
     font-size: 6px;
     text-align: center;
 }
-.Button_KM:hover {
+.b-km-0:hover {
     text-decoration: underline;
 }
+
+.button_root {
+    display: block;
+    float: left;
+    width: 50px;height: 40px;
+    font-size: 30px;line-height: 50px;text-align: center;
+    border: none;
+}
+/*.button_root:hover {
+    width: 48px;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+}*/
+
 .ButtonSubmit {
     letter-spacing: 3px;
     text-align: center;

@@ -4,18 +4,11 @@ from django.conf.urls.defaults import *
 urlpatterns = patterns('django.contrib.auth.views',
     (r'^account/login/', 'login', {'template_name':'me/login.html'}),
     (r'^account/logout/', 'logout'),
+    #(r'^account/settings/', 'settings'),
 )
-urlpatterns += patterns('me.views',
-    (r'^$', 'Entrance'),
-    (r'^ajax/category_create_form/$', 'c_c_f'),
-)
-urlpatterns += patterns('knowledge.views',
-    (r'^know/$', 'ReadKnow'),
-    (r'^know/db/$', 'WriteKnow'), # create, update, delete
-    (r'^know/category/$', 'ReadKnowCategory'),
-    (r'^know/category/db/$', 'WriteKnowCategory'), # create, update, delete
-    (r'^know/segment/$', 'ReadKnowSegment'),
-    (r'^know/segment/db/$', 'WriteKnowSegment'), # create, update, delete
+urlpatterns += patterns('',
+    (r'^$', 'me.views.site_entrance'),
+    (r'^know/', include('me.urls')),
 )
 #urlpatterns += patterns('.views',
     #(r'^/', ''),

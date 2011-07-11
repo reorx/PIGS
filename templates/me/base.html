@@ -10,18 +10,8 @@
     </title>
 
     <link media="all" rel="stylesheet" href="/static/css/global-style.css" type="text/css" />
-    <link media="all" rel="stylesheet" href="/static/css/ui/b.css" type="text/css" />
     <!--  -->
-    <link media="all" rel="stylesheet" href="/static/css/me/base-layout.css" type="text/css" />
-    <link media="all" rel="stylesheet" href="/static/css/me/home-style.css" type="text/css" />
-    <link media="all" rel="stylesheet" href="/static/css/me/home-editor.css" type="text/css" />
-    <link media="all" rel="stylesheet" href="/static/css/me/home-content.css" type="text/css" />
-    <link media="all" rel="stylesheet" href="/static/css/me/home-control.css" type="text/css" />
-    <link media="all" rel="stylesheet" href="/static/css/me/home-extend.css" type="text/css" />
-    <!--
-    <link media="all" rel="stylesheet" href="/static/css/lib/mark-it-up.css" type="text/css" />
-    <script src="/static/js/lib/json_sans_eval.js" type="text/javascript"></script>
-    -->
+    <link media="all" rel="stylesheet" href="/static/css/me/base.css" type="text/css" /> <!-- layout & style -->
     <!-- jQuery-basic -->
     <script src="/static/js/lib/jquery-1.4.4.min.js" type="text/javascript"></script>
     <script src="/static/js/lib/jquery.cookie.js" type="text/javascript"></script>
@@ -29,77 +19,78 @@
     <!-- UI Core: Core, Widget, Mouse, Position
         Interactions: Draggable, Droppable, Sortable -->
     <script src="/static/js/lib/jquery-ui-1.8.9.custom.min.js" type="text/javascript"></script>
-    <!-- plugin -->
-    <script src="/static/js/lib/jscrollbar.js" type="text/javascript"></script>
-    <!-- js of this page -->
-    <script src="/static/js/home.js" type="text/javascript"></script>
-    <!--  -->
-    {% block extra_head %}
+    {% block head_extra %}
     {% endblock %}
 </head>
 <body>
     <div id="Header" >
-        <div id="God">
+        <div id="Chaos">
             <div id="G0">{{ request.user.username }}</div>
             <div id="G1"></div>
             <div id="G2"></div>
         </div>
-        <div id="Navs" class="LeftNarrow">
-            <div class="Nav">
-                <a href="#knowledge" class="NavButton">K</a>
-                <div class="NavTags" style="z-index:1;">
+        <div id="TopNav" class="">
+            <div class="nav">
+                <a id="nav-tags-toggle" class="b-nav-0" href="#knowledge" >K</a>
+                <div class="nav-tags" style="z-index:1;">
                     {% for category in category_list %}
-                        <a href="#{{ category.name }}" id="" class="Tag Button_RB" onclick="View_Category({{ category.id }})">{{ category.name }}</a>
+                        <a id="" class="b-nav-1" onclick="View_Category({{ category.id }})" href="#{{ category.name }}">{{ category.name }}</a>
                     {% endfor %}
-                    <a id="Manage_category" href="#" class="Tag Button_RB">M</a>
+                    <a id="" href="#" class="fn-mc b-nav-1">M</a>
                 </div>
             </div>
-            <div class="Nav_gap"></div>
-            <div class="Nav">
-                <a href="#resource" class="NavButton">R</a>
+            <div class="nav-gap"></div>
+
+            <div class="nav">
+                <a id="nav-tags-toggle" class="b-nav-0" href="#knowledge" >R</a>
             </div>
-            <div class="Nav_gap"></div>
+            <div class="nav-gap"></div>
 
         </div>
     </div>
 
-    <div id="AppsArea">
-        <a href="#apps" id="AppsButton" class="">A</a>
+    <div id="Sidebar">
+        <a href="#apps" id="ToggleAppsNav" class="b-app-0">A</a>
         <div id="AppsNav">
         </div>
     </div>
-    <div id="Control">
-        <div id="operateInList">
-            <div id="operate_category" class="operateInList" style="display: none">
-                <a id="entrylist_show" class="OperateButton Button_RS" onclick="View_KnowledgeList()">Tree</a>
-                <a href="#" id="" class="OperateButton Button_RS" onclick="View_Category();">Profile</a>
-                <a href="#" id="page_entry_add" class="OperateButton Button_RS" onclick="Content_Add('knowledge','multiple');">Add</a>
-                <!--
-                <a href="#" id="" class="OperateButton Button_RS" onclick="">Organize</a>
-                -->
+
+    <div id="ControlPanel">
+        <div id="CPTop">
+            <div id="CPTopMenu" class="" >
+                <a id="" class="b-cp-0" onclick="View_KnowledgeList();" href="#">Tree</a>
+                <a id="" class="b-cp-0" onclick="View_Category();" href="#">Profile</a>
+                <a id="" class="b-cp-0" onclick="Content_Add('knowledge','multiple');" href="#">Add</a>
             </div>
         </div>
-        <div id="View_area">
-            <div id="View">
+        <div id="CPMiddle">
+            <div class="container">
+                {% block control_panel %}
+                {% endblock %}
             </div>
         </div>
     </div>
 
-    <div id="Content" class="RightWide">
-        <div id="Content_Main">
+    <div id="Main" class="RightWide">
+        <div id="MainLeft">
             {% block main_left %}
             {% endblock %}
         </div>
-        <div id="contentExtend">
+        <div id="MainRight">
+            {% block main_right %}
+            {% endblock %}
         </div>
     </div>
+
     <!-- invisibles -->
-    <div id="loading">Loading..</div>
-    <div id="knowledgeMenu" class="hidden">
-        <a href="#" id="" class="Button_KM" onclick="Content_EditPage();">Edit</a>
-        <a href="#" id="" class="Button_KM" onclick="Content_Add('knowledge','child');">Chi</a>
-        <a href="#" id="" class="Button_KM" onclick="delete_knowledge()">Del</a>
+    <!--
+    <div id="Noti">Loading..</div>
+    <div id="KMenu" class="hidden">
+        <a href="#" id="" class="b-km-0" onclick="Content_EditPage();">Edit</a>
+        <a href="#" id="" class="b-km-0" onclick="Content_Add('knowledge','child');">Chi</a>
+        <a href="#" id="" class="b-km-0" onclick="delete_knowledge()">Del</a>
     </div>
     <div id="Submit_content" class="ButtonSubmit">Submit</div>
+    -->
 </body>
 </html>

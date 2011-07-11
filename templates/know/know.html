@@ -1,29 +1,29 @@
 {% extends 'me/base.html' %}
 
 {% block head_title %}
+    {{ know.name }}
 {% endblock %}
 
 {% block head_extra %}
-<link media="all" rel="stylesheet" href="/static/.css" type="text/css" />
-<script src="" type="text/javascript"></script>
+    <link media="all" rel="stylesheet" href="/static/css/me/home.css" type="text/css" />
+    <script src="/static/js/home.js" type="text/javascript"></script>
 {% endblock %}
 
 {% block control_panel %}
 {% endblock %}
 
 {% block main_left %}
+<h1>{{ know.name }}</h1>
 {% endblock %}
 
 {% block main_right %}
 {% endblock %}
 
 {% block none %}
-
     {% for test in tests %}
         {{ test.title }}
     {% endfor %}
 
     {% if test %}
     {% endif %}
-
 {% endblock %}

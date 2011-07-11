@@ -67,7 +67,7 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
 )
@@ -85,20 +85,29 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
-    # admin #
     'django.contrib.admin',
-    # filters #
-    'django.contrib.markup',
-    # utils #
-    'utils',
     # modules #
+    'me',
     'knowledge',
     'tag',
-    'note',
+    #'note',
+    # tools #
+    'utils',
     # apps #
-    #'apps',
+    'api',
+    'apps'
 )
 
 # account about
 LOGIN_URL = '/account/login/'
 LOGOUT_URL = '/account/logout/'
+AUTH_PROFILE_MODULE = "me.user_profile"
+# cache
+CACHE_BACKEND = 'memcached://127.0.0.1:11211/?timeout=7200&max_entries=100000000'
+
+# session
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+SESSION_COOKIE_NAME = 'global_session_id'
+SESSION_COOKIE_AGE = 60*60*24*7 # 1 week
+SESSION_COOKIE_DOMAIN = None
+

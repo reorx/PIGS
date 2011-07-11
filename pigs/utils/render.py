@@ -1,27 +1,15 @@
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
-from django.template import RequestContext
-from django.utils import simplejson
+from django.template import RequestContext,Context
+from django.template.loader import get_template
 
-class DateTimeJSONEncoder(simplejson.JSONEncoder):
-    """
-    copy from django.core.serializers.json
-    """
-    DATE_FORMAT = "%Y-%m-%d"
-    TIME_FORMAT = "%H:%M:%S"
+from utils.tools import SDict, ins2dic, get_timestamp
+from utils.json import _dic, _json
 
-    def default(self, o):
-        if isinstance(o, datetime.datetime):
-            return o.strftime("%s %s" % (self.DATE_FORMAT, self.TIME_FORMAT))
-        elif isinstance(o, datetime.date):
-            return o.strftime(self.DATE_FORMAT)
-        elif isinstance(o, datetime.time):
-            return o.strftime(self.TIME_FORMAT)
-        else:
-            return super(DateTimeJSONEncoder, self).default(o)
-
-def dumps(o, **kwargs):
-    return simplejson.dumps(o, ensure_ascii=False,cls=DateTimeJSONEncoder, **kwargs)
+def _render_tpl(tpl_name, cdic={}):
+    tpl = get_template(tpl_name)
+    context = Context(cdic)
+    return tpl.render(context)
 
 def render_tpl(request, tpl, cdic={}):
     cdic['request'] = request
@@ -32,9 +20,16 @@ def render_tpl(request, tpl, cdic={}):
     )
 
 def render_json(request, dic):
-    json = dumps(dic)
+    json = _json(dic)
     return HttpResponse(json, content_type='application/json')
 
-def render_api(request, dic):
-    json = dumps(dic)
+def render_api(req, status=None, msg=None, data=None):
+    stSD = SDict({'status': 99,'msg':'Not Found', 'data':None})
+    stSD.status = status
+    stSD.msg = msg
+    stSD.data = data
+    return render_json(req, stSD.out())
+
+def resp_json(json):
     return HttpResponse(json, content_type='application/json')
+
