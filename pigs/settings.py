@@ -90,7 +90,7 @@ INSTALLED_APPS = (
     'me',
     'knowledge',
     'tag',
-    #'note',
+    'note',
     # tools #
     'utils',
     # apps #
